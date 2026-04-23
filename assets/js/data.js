@@ -316,7 +316,6 @@ const PROJECTS = [
         fecha: "2023 · Posventas",
         imgs: [
           "2023 Posventas/IMG-20221102-WA0014.jpg",
-          "2023 Posventas/IMG-20221121-WA0047.jpg",
           "2023 Posventas/IMG-20221121-WA0052.jpg",
           "2023 Posventas/IMG-20230302-WA0037.jpg",
           "2023 Posventas/IMG-20230329-WA0010.jpg",
