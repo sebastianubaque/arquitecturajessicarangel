@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls __TRACKED_VAR__/HORIZONTAL)",
+      "Bash(ls __TRACKED_VAR__/VERTICAL)",
+      "Bash(ls __TRACKED_VAR__/PORTADA)",
+      "Bash(ls __TRACKED_VAR__/PDF)",
+      "Read(//c/Program Files/**)",
+      "Read(//c//**)",
+      "Bash(where.exe ffmpeg *)",
+      "Bash(winget install *)",
+      "Bash(/c/Users/sebas/AppData/Local/Microsoft/WinGet/Packages/Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe/ffmpeg-8.1-full_build/bin/ffprobe.exe -v error -select_streams v:0 -show_entries stream=width,height,duration,r_frame_rate,nb_frames -of csv=p=0 'FOTOS FINALES/CABAÑAS/VIDEO/CV1.mp4')",
+      "Bash(/c/Users/sebas/AppData/Local/Microsoft/WinGet/Packages/Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe/ffmpeg-8.1-full_build/bin/ffprobe.exe -v error -select_streams v:0 -show_entries stream=width,height,duration,r_frame_rate,nb_frames -of csv=p=0 'FOTOS FINALES/CABAÑAS/VIDEO/CV2.mp4')",
+      "Bash(/c/Users/sebas/AppData/Local/Microsoft/WinGet/Packages/Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe/ffmpeg-8.1-full_build/bin/ffprobe.exe -v error -select_streams v:0 -show_entries stream=width,height,duration,r_frame_rate,nb_frames -of csv=p=0 'e:/Mis Documentos/Escritorio/01 finales/JESSICA-RANGEL-WEB/FOTOS FINALES/CABAÑAS/VIDEO/CV3.mp4')",
+      "Bash(/c/Users/sebas/AppData/Local/Microsoft/WinGet/Packages/Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe/ffmpeg-8.1-full_build/bin/ffmpeg.exe -y -i 'e:/Mis Documentos/Escritorio/01 finales/JESSICA-RANGEL-WEB/FOTOS FINALES/CABAÑAS/VIDEO/CV3.mp4' -vf fps=24,scale=1280:-2 -c:v libwebp -quality 78 'e:/Mis Documentos/Escritorio/01 finales/JESSICA-RANGEL-WEB/assets/frames/cv3/f_%03d.webp')",
+      "Read(//c/Users/sebas/.claude/plugins/cache/ui-ux-pro-max-skill/ui-ux-pro-max/2.5.0/.claude/skills/ui-ux-pro-max/**)",
+      "Bash(python scripts/search.py \"architecture portfolio services white liquid glass modern\" --design-system -p \"Jessica Rangel Arquitectura\" -f markdown)",
+      "Bash(python3 scripts/search.py \"architecture portfolio services white liquid glass modern\" --design-system -p \"Jessica Rangel Arquitectura\" -f markdown)",
+      "Bash(python scripts/search.py \"architecture portfolio luxury minimal\" --domain style -n 5)"
+    ]
+  }
+}

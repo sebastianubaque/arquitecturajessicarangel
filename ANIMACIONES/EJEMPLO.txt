@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hero Animado con Video Intro - Control de Escala</title>
+
+<style>
+  /* --- ESTILOS BASE Y BLOQUEO DE SCROLL INICIAL --- */
+  body {
+    margin: 0;
+    background: white;
+    font-family: 'Helvetica Neue', sans-serif;
+    overflow: hidden; 
+  }
+
+  body.scroll-activo {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  /* --- PANTALLA DE INTRODUCCIÓN (VIDEO) --- */
+  #intro-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffffff;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.6s ease-out, visibility 0.6s ease-out;
+  }
+
+  /* Estilo base para el video en pantallas horizontales (PC) */
+  #intro-screen video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+    transition: transform 0.3s ease;
+  }
+
+  /* =========================================================================
+     👇 AQUÍ PUEDES AJUSTAR MANUALMENTE EL TAMAÑO DEL VIDEO EN MÓVIL 👇
+     ========================================================================= */
+  @media (orientation: portrait) {
+    #intro-screen video {
+      /* El valor 'scale' controla el zoom:
+         1.0 = Tamaño normal (se verá el video completo, pero con franjas grandes).
+         1.2 = Zoom del 20% (Un buen punto medio que lo hace más grande).
+         1.5 = Zoom del 50% (Mucho más grande, se acercará a los bordes).
+         
+         ¡Cambia este '1.2' por el número que mejor se vea con tu logo!
+      */
+      transform: scale(2.5); 
+    }
+  }
+  /* ========================================================================= */
+
+  .ocultar-intro {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  /* --- ESTILOS DEL HERO --- */
+  .hero { height: 250vh; }
+  .sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+
+  .text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    letter-spacing: 2px;
+    text-align: center;
+    width: 90%;
+    z-index: 5;
+    opacity: 0;
+    filter: blur(10px);
+    will-change: transform, opacity, filter;
+  }
+
+  .text.animar {
+    animation: textReveal 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  @keyframes textReveal {
+    0% { opacity: 0; filter: blur(12px); transform: translate(-50%, -30%); }
+    100% { opacity: 1; filter: blur(0); transform: translate(-50%, -50%); }
+  }
+
+  .img {
+    position: absolute; width: 100vw; height: 100vh; object-fit: cover; top: 0; left: 0; will-change: transform; 
+  }
+  .img-final {
+    position: absolute; width: 100vw; height: 100vh; object-fit: cover; top: 0; left: 0; opacity: 0; z-index: 3; will-change: opacity;
+  }
+
+  /* Desktop */
+  .left { transform: translateX(-100%); z-index: 1; }
+  .right { transform: translateX(100%); z-index: 2; }
+
+  /* Móvil */
+  .top-m { transform: translateY(-100%); z-index: 1; }
+  .bottom-m { transform: translateY(100%); z-index: 2; }
+
+  /* Media Queries para imágenes del hero */
+  .mobile-only { display: none; }
+  .desktop-only { display: block; }
+
+  @media (max-width: 768px) {
+    .mobile-only { display: block; }
+    .desktop-only { display: none; }
+    
+    .text { 
+        font-size: 2.2rem; 
+        width: 95%; 
+    } 
+
+    #finalImgMobile {
+        transform: scale(1.15);
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div id="intro-screen">
+  <video id="intro-video" src="https://res.cloudinary.com/duxzwcnfc/video/upload/v1776660367/ANIMACION_LOGO_iacink.mp4" autoplay muted playsinline></video>
+</div>
+
+<section class="hero">
+  <div class="sticky">
+    <div class="text" id="text">
+      TU SUEÑO PLASMADO,<br>PRONTO SERÁ UNA REALIDAD.
+    </div>
+
+    <img src="https://res.cloudinary.com/duxzwcnfc/image/upload/v1776655142/H002_p7jfwp.png" class="img left desktop-only" id="leftImg">
+    <img src="https://res.cloudinary.com/duxzwcnfc/image/upload/v1776655143/H003_xrx2eu.png" class="img right desktop-only" id="rightImg">
+    <img src="https://res.cloudinary.com/duxzwcnfc/image/upload/v1776655142/H001_yiqhgn.png" class="img-final desktop-only" id="topImgDesktop">
+
+    <img src="https://res.cloudinary.com/duxzwcnfc/image/upload/v1776657467/V003_y2kmw6.png" class="img top-m mobile-only" id="topImgMobile">
+    <img src="https://res.cloudinary.com/duxzwcnfc/image/upload/v1776657467/V002_gtfdx5.png" class="img bottom-m mobile-only" id="bottomImgMobile">
+    <img src="https://res.cloudinary.com/duxzwcnfc/image/upload/v1776657467/V001_blacru.jpg" class="img-final mobile-only" id="finalImgMobile">
+  </div>
+</section>
+
+<section style="height: 100vh; background: #f0f0f0; display: flex; align-items: center; justify-content: center;">
+    <h2>Siguiente sección del contenido...</h2>
+</section>
+
+<script>
+  // --- LÓGICA DEL VIDEO DE INTRODUCCIÓN ---
+  const introScreen = document.getElementById('intro-screen');
+  const introVideo = document.getElementById('intro-video');
+  const textElement = document.getElementById('text');
+
+  const iniciarPagina = () => {
+    introScreen.classList.add('ocultar-intro');
+    document.body.classList.add('scroll-activo');
+    textElement.classList.add('animar');
+  };
+
+  introVideo.addEventListener('ended', iniciarPagina);
+
+  setTimeout(() => {
+    if (!introScreen.classList.contains('ocultar-intro')) {
+      iniciarPagina();
+    }
+  }, 4000);
+
+  // --- LÓGICA DEL SCROLL ---
+  const left = document.getElementById("leftImg");
+  const right = document.getElementById("rightImg");
+  const topImgDesktop = document.getElementById("topImgDesktop");
+  const topM = document.getElementById("topImgMobile");
+  const bottomM = document.getElementById("bottomImgMobile");
+  const finalImgMobile = document.getElementById("finalImgMobile");
+
+  let isTicking = false;
+
+  const updateAnimation = () => {
+    const scroll = window.scrollY;
+    const max = window.innerHeight * 1.5; 
+    let progress = Math.min(scroll / max, 1);
+
+    const movePercentage = progress * 100;
+
+    // Desktop
+    left.style.transform = `translateX(${(-100 + movePercentage)}%)`;
+    right.style.transform = `translateX(${(100 - movePercentage)}%)`;
+
+    // Móvil
+    topM.style.transform = `translateY(${(-100 + movePercentage)}%) scale(1.15)`;
+    bottomM.style.transform = `translateY(${(100 - movePercentage)}%) scale(1.15)`;
+
+    // Texto
+    let textProgress = Math.min(progress * 1.3, 1);
+    const textYOffset = textProgress * 300;
+    
+    textElement.style.transform = `translate(-50%, calc(-50% - ${textYOffset}px))`;
+    textElement.style.opacity = 1 - textProgress;
+
+    if (textProgress >= 0.95) {
+      textElement.style.visibility = "hidden";
+    } else {
+      textElement.style.visibility = "visible";
+    }
+
+    // Imágenes finales
+    let imgProgress = Math.max((progress - 0.5) * 2, 0);
+    topImgDesktop.style.opacity = Math.min(imgProgress, 1);
+    finalImgMobile.style.opacity = Math.min(imgProgress, 1);
+
+    isTicking = false;
+  };
+
+  window.addEventListener("scroll", () => {
+    if (!isTicking) {
+      window.requestAnimationFrame(updateAnimation);
+      isTicking = true;
+    }
+  }, { passive: true });
+</script>
+
+</body>
+</html>

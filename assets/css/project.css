@@ -1,0 +1,298 @@
+/* ============================================================
+   PÁGINA DETALLE DE PROYECTO
+   ============================================================ */
+
+.project-hero {
+  padding: calc(var(--nav-h) + var(--space-xl)) 0 var(--space-lg);
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding-left: clamp(20px, 5vw, 64px);
+  padding-right: clamp(20px, 5vw, 64px);
+}
+.project-hero__back {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.8rem; letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: var(--space-md);
+  transition: color 0.2s;
+}
+.project-hero__back:hover { color: var(--fg); }
+.project-hero__back svg { width: 16px; height: 16px; stroke: currentColor; }
+
+.project-hero__eyebrow {
+  font-size: 0.75rem; letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: var(--space-sm);
+}
+.project-hero h1 {
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  margin-bottom: var(--space-md);
+  max-width: 16ch;
+}
+.project-hero__meta {
+  display: flex; flex-wrap: wrap; gap: var(--space-lg);
+  margin-top: var(--space-lg);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--line);
+}
+.project-hero__meta-item .eyebrow { display: block; margin-bottom: 6px; }
+.project-hero__meta-item p { font-size: 1rem; color: var(--fg); }
+.project-hero__desc {
+  margin-top: var(--space-lg);
+  max-width: 75ch;
+  font-size: 1.05rem;
+  color: var(--fg-soft);
+  line-height: 1.7;
+}
+
+/* ========== GALERÍA SCROLL FULL-SCREEN ========== */
+.project-gallery {
+  position: relative;
+  margin-top: var(--space-xl);
+}
+.project-slide {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background: #000;
+}
+.project-slide__media {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.05);
+  transition: opacity 1s var(--ease), transform 1.4s var(--ease);
+}
+.project-slide.in .project-slide__media { opacity: 1; transform: scale(1); }
+.project-slide__index {
+  position: absolute;
+  top: 24px; left: 24px;
+  z-index: 3;
+  color: #fff;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(10px);
+  padding: 8px 14px;
+  border-radius: 100px;
+}
+
+/* Bloque 3D dentro del proyecto (Cabañas) */
+.project-3d {
+  height: 200vh;
+  position: relative;
+}
+.project-3d__sticky {
+  position: sticky; top: 0;
+  height: 100vh; width: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+/* PDF button */
+.project-pdf-btn {
+  position: fixed;
+  right: 24px; bottom: 100px;
+  z-index: 399;
+  background: #fff;
+  border: 1px solid var(--fg);
+  padding: 12px 20px;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  transition: background 0.3s, color 0.3s;
+}
+.project-pdf-btn:hover { background: var(--fg); color: #fff; }
+.project-pdf-btn svg { width: 16px; height: 16px; stroke: currentColor; }
+@media (max-width: 500px) {
+  .project-pdf-btn { right: 12px; bottom: 90px; padding: 10px 14px; font-size: 0.7rem; }
+}
+
+/* Nav entre proyectos */
+.project-nav {
+  display: flex; justify-content: space-between;
+  padding: var(--space-xl) clamp(20px, 5vw, 64px);
+  border-top: 1px solid var(--line);
+  gap: var(--space-md);
+  align-items: center;
+}
+.project-nav a {
+  display: flex; flex-direction: column; gap: 4px;
+  transition: opacity 0.2s;
+  max-width: 45%;
+}
+.project-nav a .eyebrow { font-size: 0.7rem; }
+.project-nav a h4 { font-size: 1.25rem; margin-top: 4px; }
+.project-nav a:hover { opacity: 0.6; }
+.project-nav__next { text-align: right; align-items: flex-end; }
+.project-nav__empty { visibility: hidden; }
+
+/* PDF list reutilizada en detalle de proyecto */
+.diploma-list { display: grid; gap: 8px; }
+.diploma-item {
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  transition: background 0.2s;
+}
+.diploma-item:hover { background: #fafafa; }
+.diploma-item__title { font-size: 0.9rem; }
+.diploma-item__link {
+  font-size: 0.75rem; letter-spacing: 0.1em;
+  padding: 8px 14px;
+  border: 1px solid var(--fg);
+  border-radius: 4px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.diploma-item__link:hover { background: var(--fg); color: #fff; }
+
+
+/* ============================================================
+   LÍNEA DE TIEMPO — Trabajos en Empresa
+   ============================================================ */
+.tl-wrap {
+  position: relative;
+  padding: var(--space-xl) 0 var(--space-xxl);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Línea vertical central */
+.tl-line {
+  position: absolute;
+  left: 50%;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: var(--line);
+  transform: translateX(-50%);
+  z-index: 0;
+}
+.tl-line__fill {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 0%;
+  background: var(--fg);
+  transition: height 0.08s linear;
+}
+
+/* Cada entrada */
+.tl-entry {
+  display: grid;
+  grid-template-columns: 1fr 56px 1fr;
+  gap: 0;
+  margin-bottom: clamp(48px, 8vw, 80px);
+  position: relative;
+  opacity: 0;
+  transition:
+    opacity 0.7s var(--ease),
+    transform 0.7s var(--ease);
+  transition-delay: 0ms;
+}
+
+/* Lado derecho: fecha izquierda, imágenes derecha */
+.tl-entry--right .tl-entry__date-col { grid-column: 1; text-align: right; padding-right: 28px; }
+.tl-entry--right .tl-entry__node     { grid-column: 2; }
+.tl-entry--right .tl-entry__imgs-col { grid-column: 3; padding-left: 28px; }
+
+/* Lado izquierdo: imágenes izquierda, fecha derecha */
+.tl-entry--left .tl-entry__date-col { grid-column: 3; text-align: left;  padding-left: 28px;  order: 3; }
+.tl-entry--left .tl-entry__node     { grid-column: 2; order: 2; }
+.tl-entry--left .tl-entry__imgs-col { grid-column: 1; padding-right: 28px; order: 1; }
+
+/* Animación de entrada */
+.tl-entry--right { transform: translateX(-24px); }
+.tl-entry--left  { transform: translateX(24px); }
+.tl-entry--in    { opacity: 1; transform: translateX(0); }
+
+/* Nodo central */
+.tl-entry__node {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  z-index: 1;
+}
+.tl-entry__dot {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--muted);
+  transition: border-color 0.3s, background 0.3s, transform 0.3s var(--ease);
+}
+.tl-entry--in .tl-entry__dot {
+  border-color: var(--fg);
+  background: var(--fg);
+  transform: scale(1.2);
+}
+
+/* Etiqueta de fecha */
+.tl-entry__fecha {
+  display: inline-block;
+  font-family: var(--ff-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 8px;
+  transition: color 0.3s;
+}
+.tl-entry--in .tl-entry__fecha { color: var(--fg); }
+
+/* Grid de imágenes */
+.tl-entry__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+}
+.tl-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+  background: var(--line);
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+.tl-img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.14);
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .tl-wrap { padding: var(--space-lg) 0 var(--space-xl); }
+
+  /* Línea a la izquierda */
+  .tl-line { left: 20px; transform: none; }
+
+  /* Todos los entries: fecha arriba, imágenes abajo, a la derecha de la línea */
+  .tl-entry {
+    grid-template-columns: 44px 1fr;
+    grid-template-rows: auto auto;
+    margin-bottom: 48px;
+    transform: translateY(16px) !important;
+  }
+  .tl-entry--in { transform: translateY(0) !important; }
+
+  .tl-entry--right .tl-entry__node,
+  .tl-entry--left  .tl-entry__node  { grid-column: 1; grid-row: 1; order: 1; padding-top: 12px; justify-content: center; }
+
+  .tl-entry--right .tl-entry__date-col,
+  .tl-entry--left  .tl-entry__date-col { grid-column: 2; grid-row: 1; order: 2; text-align: left; padding: 8px 0 0 12px; }
+
+  .tl-entry--right .tl-entry__imgs-col,
+  .tl-entry--left  .tl-entry__imgs-col { grid-column: 2; grid-row: 2; order: 3; padding: 12px 0 0 12px; }
+
+  .tl-entry__grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+}
