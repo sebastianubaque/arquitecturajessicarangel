@@ -140,7 +140,7 @@ const PROJECTS = [
       categoria: "Residencial",
       ubicacion: "Socorro, Santander",
       dimensiones: "122 m²",
-      descripcion: "Diseño pensado para aprovechar al máximo cada metro cuadrado. Este proyecto convierte un reto arquitectónico —el techo inclinado— en su mayor virtud. La distribución integra de forma fluida la zona de descanso justo bajo la entrada de luz natural. El uso de texturas cálidas y maderas claras crea una atmósfera íntima y relajante, demostrando que el buen diseño puede convertir cualquier rincón en el lugar favorito del hogar."
+      descripcion: "El verdadero lujo en una casa de campo es la tranquilidad.  En lugar de usar muros pesados, optamos por celosías de madera que abrazan el espacio, aportando textura y calidez natural mientras dejan que la luz fluya libremente. Es un ambiente pensado para vivirse despacio, con un diseño contemporáneo que respeta la esencia del hogar."
     }
   },
   {
@@ -182,7 +182,7 @@ const PROJECTS = [
       categoria: "Residencial",
       ubicacion: "Oiba, Santander",
       dimensiones: "400 m²",
-      descripcion: "Vivienda de dos niveles que destaca por su impecable limpieza visual y equilibrio geométrico. El diseño se articula a través del contraste entre volúmenes blancos minimalistas y un cuerpo central revestido en textura de madera, aportando calidez y jerarquía a la fachada. Los amplios ventanales y las barandas en vidrio garantizan espacios interiores luminosos, creando una obra moderna, elegante y atemporal."
+      descripcion: "Vivienda unifamiliar de estilo moderno cálido que equilibra una fachada de alto impacto con un oasis privado en su interior. La volumetría exterior destaca por el contraste armónico entre muros blancos, acentos en ladrillo a la vista y texturas de madera. En su interior, el diseño se abre hacia una zona social íntima con piscina, deck de madera y pérgola. Un proyecto concebido estructural y presupuestalmente para ser totalmente viable, ofreciendo a la familia un refugio estético, funcional y listo para construirse."
     }
   },
   {
